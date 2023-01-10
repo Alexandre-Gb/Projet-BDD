@@ -6,69 +6,83 @@ CREATE SCHEMA public;
 /* Tables */
 CREATE TABLE status(
     idStatus serial PRIMARY KEY,
-    description varchar(50)
+    description varchar(50) NOT NULL
 );
 
 CREATE TABLE commandes(
     idCommande serial PRIMARY KEY,
-    dateCommande timestamp WITHOUT TIME ZONE,
-    note float DEFAULT null,
-    commentaire text DEFAULT null,
-    idClient int
+    dateCommande timestamp WITHOUT TIME ZONE DEFAULT now(),
+    note float CHECK ( note BETWEEN 0 AND 5 OR NULL),
+    commentaire varchar(2000),
+    idClient int,
+    idRestaurant int,
+    idLivreur int
 );
 
 CREATE TABLE plats(
     idPlat serial PRIMARY KEY,
-    nom varchar(50),
-    prix float,
-    description text,
+    nom varchar(50) NOT NULL,
+    prix float NOT NULL CHECK ( prix >= 0 ),
+    description varchar(2000),
     photo varchar(200)
 );
 
 CREATE TABLE clients(
     idClient serial PRIMARY KEY,
-    mail varchar(100) UNIQUE ,
-    nom varchar(50),
-    prénom varchar(50),
-    tel char(10),
-    passwd varchar(100),
-    pointsFidélite int,
-    codePostal char(5),
-    adresse varchar(100),
+    mail varchar(100) UNIQUE NOT NULL,
+    nom varchar(50) NOT NULL,
+    prénom varchar(50) NOT NULL,
+    tel char(10) NOT NULL,
+    passwd char(50) NOT NULL,
+    pointsFidélite int DEFAULT 0 NOT NULL CHECK ( pointsFidélite >= 0 ),
+    adresse varchar(100) NOT NULL,
     idVille int
+);
+
+CREATE TABLE carte_bancaire(
+    idCb serial PRIMARY KEY,
+    titulaire char(50) NOT NULL,
+    pays char(50) NOT NULL,
+    numero char(50) NOT NULL,
+    date char(50) NOT NULL,
+    crypto char(50) NOT NULL,
+    idCLient int
 );
 
 CREATE TABLE villes(
     idVille serial PRIMARY KEY,
-    nomVille varchar(50)
+    nomVille varchar(50) NOT NULL,
+    codePostal char(5) NOT NULL,
+    UNIQUE (nomVille, codePostal)
 );
 
 CREATE TABLE mots_clefs(
     idMotsClef serial PRIMARY KEY,
-    mot varchar(50) UNIQUE
+    mot varchar(50) UNIQUE NOT NULL
 );
 
 CREATE TABLE horaires(
     idHoraire serial PRIMARY KEY,
-    jour int CHECK (jour BETWEEN 0 AND 6),
-    ouverture time WITHOUT TIME ZONE,
-    fermeture time WITHOUT TIME ZONE
+    jour int CHECK (jour BETWEEN 0 AND 6) NOT NULL ,
+    ouverture time WITHOUT TIME ZONE NOT NULL,
+    fermeture time WITHOUT TIME ZONE NOT NULL,
+    CHECK ( ouverture < fermeture )
 );
 
 CREATE TABLE livreurs(
     idLivreur serial PRIMARY KEY,
-    nom varchar(50),
-    prénom varchar(50),
-    telPro char(10),
-    passwd varchar(100),
-    enService boolean
+    nom varchar(50) NOT NULL ,
+    prénom varchar(50) NOT NULL ,
+    telPro char(10) NOT NULL,
+    passwd char(50) NOT NULL,
+    enService boolean NOT NULL DEFAULT false
 );
 
 CREATE TABLE restaurants(
     idRestaurant serial PRIMARY KEY,
-    nom varchar(50),
-    tempFerme boolean,
-    fraisCharge float,
+    nom varchar(50) NOT NULL ,
+    tempFerme boolean DEFAULT false,
+    fraisCharge float CHECK ( fraisCharge >= 0 OR NULL ),
     idVille int
 );
 
@@ -77,7 +91,7 @@ CREATE TABLE restaurants(
 CREATE TABLE état(
     idStatus int,
     idCommande int,
-    dateHeure timestamp WITHOUT TIME ZONE
+    dateHeure timestamp WITHOUT TIME ZONE DEFAULT now()
 );
 
 CREATE TABLE contient(
@@ -104,7 +118,11 @@ CREATE TABLE carte(
 /* Foreign Keys */
 ALTER TABLE commandes
     ADD CONSTRAINT fk_commandes_idclient
-        FOREIGN KEY (idClient) REFERENCES clients(idClient);
+        FOREIGN KEY (idClient) REFERENCES clients(idClient),
+    ADD CONSTRAINT fk_commandes_idrestaurant
+        FOREIGN KEY (idRestaurant) REFERENCES restaurants(idRestaurant),
+    ADD CONSTRAINT fk_commandes_idlivreur
+        FOREIGN KEY (idLivreur) REFERENCES livreurs(idLivreur);
 
 ALTER TABLE clients
     ADD CONSTRAINT fk_clients_idville
@@ -143,3 +161,7 @@ ALTER TABLE carte
         FOREIGN KEY (idPlat) REFERENCES plats(idPlat),
     ADD CONSTRAINT fk_carte_idrestaurant
         FOREIGN KEY (idRestaurant) REFERENCES restaurants(idRestaurant);
+
+ALTER TABLE carte_bancaire
+    ADD CONSTRAINT fk_carte_bancaire_idClient
+        FOREIGN KEY (idCLient) REFERENCES clients(idCLient);
