@@ -46,7 +46,7 @@ CREATE TABLE carte_bancaire(
     numero char(50) NOT NULL,
     date char(50) NOT NULL,
     crypto char(50) NOT NULL,
-    idCLient int
+    idClient int
 );
 
 CREATE TABLE villes(
@@ -164,4 +164,4 @@ ALTER TABLE carte
 
 ALTER TABLE carte_bancaire
     ADD CONSTRAINT fk_carte_bancaire_idClient
-        FOREIGN KEY (idCLient) REFERENCES clients(idCLient);
+        FOREIGN KEY (idClient) REFERENCES clients(idClient);
