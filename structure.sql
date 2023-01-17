@@ -80,7 +80,8 @@ CREATE TABLE livreurs(
 
 CREATE TABLE restaurants(
     idRestaurant serial PRIMARY KEY,
-    nom varchar(50) NOT NULL ,
+    nom varchar(50) NOT NULL,
+    adresse varchar(100) NOT NULL,
     tempFerme boolean DEFAULT false,
     fraisCharge float CHECK ( fraisCharge >= 0 OR NULL ),
     idVille int

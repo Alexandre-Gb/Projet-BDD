@@ -52,7 +52,7 @@ INSERT INTO plats(nom, prix, description, photo) VALUES
 
 
 
-INSERT INTO ville(nomVille, codePostal) VALUES
+INSERT INTO villes(nomVille, codePostal) VALUES
 ('Lyon 1er', '69001'),
 ('Marseille 8e', '13008'),
 ('Bordeaux', '33000'),
@@ -61,14 +61,12 @@ INSERT INTO ville(nomVille, codePostal) VALUES
 ('Nice', '06000'),
 ('Nantes', '44000'),
 ('Rouen', '76000'),
-('Montargis', '45200')
+('Montargis', '45200'),
 ('Lille', '59000'),
 ('Dijon', '21000');
 
 
-
-
-INSERT INTO restaurants(nom, adresse,tempFerme, fraisCharge, idVille) VALUES
+INSERT INTO restaurants(nom, adresse, tempFerme, fraisCharge, idVille) VALUES
 ('À la bonne fourchette !', '13 rue du chat noir', false, 10.45, 1),
 ('O''tacos', '70 place de la République', false, 1.11, 5),
 ('Le Bistrot des Amis', '3 avenue des Champs-Élysées', true, 15.50, 3),
@@ -87,7 +85,7 @@ INSERT INTO restaurants(nom, adresse,tempFerme, fraisCharge, idVille) VALUES
 ('Le Bistrot du Terroir', '20 place des Terroirs', false, 45.00, 4);
 
 
-INSERT INTO clients(mail, nom, prenom, tel, passwd, pointsFidelite, adresse, idVille)
+INSERT INTO clients(mail, nom, prenom, tel, passwd, pointsFidelite, adresse, idVille) VALUES
 ('jean.dupont@gmail.com', 'Dupont', 'Jean', '0612345678', 'a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4', 120, '1 rue des Lilas', 7),
 ('paul.martin@yahoo.fr', 'Martin', 'Paul', '0623456789', 'f5e4d3c2b1a0f6e5d4c3b2a1f7e6d5c4b3a2f1e0d9c8b7a6', 50, '2 avenue des Tilleuls', 3),
 ('claire.durand@hotmail.com', 'Durand', 'Claire', '0634567890', 'a8b7c6d5e4f3a2b1c0d9e8f7g6h5i4j3k2l1a0b9c8d7e6f5', 80, '3 rue des Cerisiers', 6),
@@ -114,7 +112,7 @@ INSERT INTO clients(mail, nom, prenom, tel, passwd, pointsFidelite, adresse, idV
 ('ulrike.rodriquez@hotmail.com', 'Rodriguez', 'Ulrike', '0635792468', 'j8i7h6g5j9i8h7g6j0i9h8g7j1i0h9g8j2i1h0g9', 80, '25 rue des Arts', 6),
 ('valerie.wright@gmail.com', 'Wright', 'Valerie', '0601234567', 'k7j6i5h4k8j7i6h5k9j8i7h6k0j9i8h7k1j0i9h8', 130, '26 avenue des Lacs', 8);
 
-INSERT INTO carte_bancaire(titulaire, pays, numero, date, crypto, idClient)
+INSERT INTO carte_bancaire(titulaire, pays, numero, date, crypto, idClient) VALUES
 ('f5e4d3c2b1a0f6e5d4c3b2a1f7e6d5c4b3a2f1e0d9c8b7a6f5e4d3c2b1a0f6e5d4c3b2a1f7e6d5c4b3', 'f5e4d3c2b1a0f6e5d4c3b2a1f7e6d5c4b3a2f1e0d9c8b7a6f5e4d3c2b1a0f6e5d4c3b2a1f7e6d5c4b3', 'f5e4d3c2b1a0f6e5d4c3b2a1f7e6d5c4b3a2f1e0d9c8b7a6f5e4d3c2b1a0f6e5d4c3b2a1f7e6d5c4b3', 'f5e4d3c2b1a0f6e5d4c3b2a1f7e6d5c4b3a2f1e0d9c8b7a6f5e4d3c2b1a0f6e5d4c3b2a1f7e6d5c4b3', 'f5e4d3c2b1a0f6e5d4c3b2a1f7e6d5c4b3a2f1e0d9c8b7a6f5e4d3c2b1a0f6e5d4c3b2a1f7e6d5c4b3', 1),
 ('f5e4d3c2b1a0f6e5d4c3b2a1f7e6d5c4b3a2f1e0d9c8b7a6f5e4d3c2b1a0f6e5d4c3b2a1f7e6d5c4b3', 'f5e4d3c2b1a0f6e5d4c3b2a1f7e6d5c4b3a2f1e0d9c8b7a6f5e4d3c2b1a0f6e5d4c3b2a1f7e6d5c4b3', 'f5e4d3c2b1a0f6e5d4c3b2a1f7e6d5c4b3a2f1e0d9c8b7a6f5e4d3c2b1a0f6e5d4c3b2a1f7e6d5c4b3', 'f5e4d3c2b1a0f6e5d4c3b2a1f7e6d5c4b3a2f1e0d9c8b7a6f5e4d3c2b1a0f6e5d4c3b2a1f7e6d5c4b3', 'f5e4d3c2b1a0f6e5d4c3b2a1f7e6d5c4b3a2f1e0d9c8b7a6f5e4d3c2b1a0f6e5d4c3b2a1f7e6d5c4b3', 2),
 ('f5e4d3c2b1a0f6e5d4c3b2a1f7e6d5c4b3a2f1e0d9c8b7a6f5e4d3c2b1a0f6e5d4c3b2a1f7e6d5c4b3', 'f5e4d3c2b1a0f6e5d4c3b2a1f7e6d5c4b3a2f1e0d9c8b7a6f5e4d3c2b1a0f6e5d4c3b2a1f7e6d5c4b3', 'f5e4d3c2b1a0f6e5d4c3b2a1f7e6d5c4b3a2f1e0d9c8b7a6f5e4d3c2b1a0f6e5d4c3b2a1f7e6d5c4b3', 'f5e4d3c2b1a0f6e5d4c3b2a1f7e6d5c4b3a2f1e0d9c8b7a6f5e4d3c2b1a0f6e5d4c3b2a1f7e6d5c4b3', 'f5e4d3c2b1a0f6e5d4c3b2a1f7e6d5c4b3a2f1e0d9c8b7a6f5e4d3c2b1a0f6e5d4c3b2a1f7e6d5c4b3', 3),
@@ -140,7 +138,7 @@ INSERT INTO carte_bancaire(titulaire, pays, numero, date, crypto, idClient)
 ('f5e4d3c2b1a0f6e5d4c3b2a1f7e6d5c4b3a2f1e0d9c8b7a6f5e4d3c2b1a0f6e5d4c3b2a1f7e6d5c4b3', 'f5e4d3c2b1a0f6e5d4c3b2a1f7e6d5c4b3a2f1e0d9c8b7a6f5e4d3c2b1a0f6e5d4c3b2a1f7e6d5c4b3', 'f5e4d3c2b1a0f6e5d4c3b2a1f7e6d5c4b3a2f1e0d9c8b7a6f5e4d3c2b1a0f6e5d4c3b2a1f7e6d5c4b3', 'f5e4d3c2b1a0f6e5d4c3b2a1f7e6d5c4b3a2f1e0d9c8b7a6f5e4d3c2b1a0f6e5d4c3b2a1f7e6d5c4b3', 'f5e4d3c2b1a0f6e5d4c3b2a1f7e6d5c4b3a2f1e0d9c8b7a6f5e4d3c2b1a0f6e5d4c3b2a1f7e6d5c4b3', 23);
 
 
-INSERT INTO livreurs(prenom, nom, telPro, passwd, enService)
+INSERT INTO livreurs(prenom, nom, telPro, passwd, enService) VALUES
 ('Dupont', 'Jean', '0612345678', 'f5e4d3c2b1a0f6e5d4c3b2a1f7e6d5c4b3a2f1e0d9c8b7a6', true),
 ('Martin', 'Paul', '0623456789', 'a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4', false),
 ('Durand', 'Claire', '0634567890', 'g4h3i2j1g5h4i3j2g6h5i4j3g7h6i5j4g8h7i6j5', true),
