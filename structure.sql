@@ -31,10 +31,10 @@ CREATE TABLE clients(
     idClient serial PRIMARY KEY,
     mail varchar(100) UNIQUE NOT NULL,
     nom varchar(50) NOT NULL,
-    prénom varchar(50) NOT NULL,
+    prenom varchar(50) NOT NULL,
     tel char(10) NOT NULL,
     passwd char(50) NOT NULL,
-    pointsFidélite int DEFAULT 0 NOT NULL CHECK ( pointsFidélite >= 0 ),
+    pointsFidelite int DEFAULT 0 NOT NULL CHECK ( pointsFidelite >= 0 ),
     adresse varchar(100) NOT NULL,
     idVille int
 );
@@ -72,7 +72,7 @@ CREATE TABLE horaires(
 CREATE TABLE livreurs(
     idLivreur serial PRIMARY KEY,
     nom varchar(50) NOT NULL ,
-    prénom varchar(50) NOT NULL ,
+    prenom varchar(50) NOT NULL ,
     telPro char(10) NOT NULL,
     passwd char(50) NOT NULL,
     enService boolean NOT NULL DEFAULT false
@@ -88,7 +88,7 @@ CREATE TABLE restaurants(
 
 
 /* Many to Many */
-CREATE TABLE état(
+CREATE TABLE etat(
     idStatus int,
     idCommande int,
     dateHeure timestamp WITHOUT TIME ZONE DEFAULT now()
@@ -132,10 +132,10 @@ ALTER TABLE restaurants
     ADD CONSTRAINT fk_restaurants_idville
         FOREIGN KEY (idVille) REFERENCES villes(idVille);
 
-ALTER TABLE état
-    ADD CONSTRAINT fk_état_idstatus
+ALTER TABLE etat
+    ADD CONSTRAINT fk_etat_idstatus
         FOREIGN KEY (idStatus) REFERENCES status(idStatus),
-    ADD CONSTRAINT fk_état_idcommande
+    ADD CONSTRAINT fk_etat_idcommande
         FOREIGN KEY (idCommande) REFERENCES commandes(idCommande);
 
 ALTER TABLE contient
