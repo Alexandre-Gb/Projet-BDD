@@ -12,8 +12,8 @@ CREATE TABLE status(
 CREATE TABLE commandes(
     idCommande serial PRIMARY KEY,
     dateCommande timestamp WITHOUT TIME ZONE DEFAULT now(),
-    note float CHECK ( note BETWEEN 0 AND 5 OR NULL),
-    commentaire varchar(2000),
+    note float CHECK ( note BETWEEN 0 AND 5 OR NULL) DEFAULT NULL,
+    commentaire varchar(2000) DEFAULT NULL,
     idClient int,
     idRestaurant int,
     idLivreur int
@@ -66,6 +66,7 @@ CREATE TABLE horaires(
     jour int CHECK (jour BETWEEN 0 AND 6) NOT NULL ,
     ouverture time WITHOUT TIME ZONE NOT NULL,
     fermeture time WITHOUT TIME ZONE NOT NULL,
+    idRestaurant int NOT NULL,
     CHECK ( ouverture < fermeture )
 );
 
@@ -86,6 +87,8 @@ CREATE TABLE restaurants(
     fraisCharge float CHECK ( fraisCharge >= 0 OR NULL ),
     idVille int
 );
+
+
 
 
 /* Many to Many */
@@ -166,3 +169,7 @@ ALTER TABLE carte
 ALTER TABLE carte_bancaire
     ADD CONSTRAINT fk_carte_bancaire_idClient
         FOREIGN KEY (idClient) REFERENCES clients(idClient);
+
+ALTER TABLE horaires
+    ADD CONSTRAINT fk_horaire_idRestaurant
+        FOREIGN KEY (idRestaurant) REFERENCES restaurants(idRestaurant);
