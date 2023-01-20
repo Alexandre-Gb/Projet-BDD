@@ -157,7 +157,7 @@ INSERT INTO livreurs(prenom, nom, telPro, passwd, enService) VALUES
 
 
 
-INSERT INTO commande(dateCommande, note, commentaire, idClient, idRestaurant, idLivreur) VALUE
+INSERT INTO commandes(dateCommande, note, commentaire, idClient, idRestaurant, idLivreur) VALUES
 ('15/01/2022', 3, 'La livraison était en retard mais la qualité des produits était satisfaisante', 10, 7, 12),
 ('07/05/2021', 5, 'La livraison était à l''heure et la qualité des produits était excellente', 15, 12, 8),
 ('31/12/2021', 2, 'La livraison était en avance mais la qualité des produits était moyenne', 24, 15, 12),
@@ -175,7 +175,7 @@ INSERT INTO commande(dateCommande, note, commentaire, idClient, idRestaurant, id
 ('25/09/2021', NULL, NULL, 14, 11, 9);
 
 
-INSERT INTO horaires(jour, ouverture, fermeture, idRestaurant) VALUE
+INSERT INTO horaires(jour, ouverture, fermeture, idRestaurant) VALUES
 (0, '08:15:00', '22.15:00', 1),
 (1, '08:15:00', '22.15:00', 1),
 (2, '08:15:00', '22.15:00', 1),
