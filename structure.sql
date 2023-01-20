@@ -72,8 +72,9 @@ CREATE TABLE horaires(
 
 CREATE TABLE livreurs(
     idLivreur serial PRIMARY KEY,
-    nom varchar(50) NOT NULL ,
-    prenom varchar(50) NOT NULL ,
+    matricule char(8) UNIQUE NOT NULL,
+    nom varchar(50) NOT NULL,
+    prenom varchar(50) NOT NULL,
     telPro char(10) NOT NULL,
     passwd char(50) NOT NULL,
     enService boolean NOT NULL DEFAULT false
