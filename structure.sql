@@ -42,7 +42,7 @@ CREATE TABLE clients(
 CREATE TABLE parrainage(
     parrain int NOT NULL,
     filleul int NOT NULL,
-    PRIMARY KEY(parrain, filleul);
+    PRIMARY KEY(parrain, filleul)
 );
 
 CREATE TABLE carte_bancaire(
@@ -123,11 +123,6 @@ CREATE TABLE associe(
 CREATE TABLE carte(
     idRestaurant int,
     idPlat int
-);
-CREATE TABLE parrainage(
-    parrain int,
-    filleul int,
-    PRIMARY KEY(parrain, filleul);
 );
 
 /* Foreign Keys */
