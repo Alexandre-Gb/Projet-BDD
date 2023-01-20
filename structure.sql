@@ -39,6 +39,12 @@ CREATE TABLE clients(
     idVille int
 );
 
+CREATE TABLE parrainage(
+    parrain int NOT NULL,
+    filleul int NOT NULL,
+    PRIMARY KEY(parrain, filleul);
+);
+
 CREATE TABLE carte_bancaire(
     idCb serial PRIMARY KEY,
     titulaire char(50) NOT NULL,
@@ -118,9 +124,21 @@ CREATE TABLE carte(
     idRestaurant int,
     idPlat int
 );
-
+CREATE TABLE parrainage(
+    parrain int,
+    filleul int,
+    PRIMARY KEY(parrain, filleul);
+);
 
 /* Foreign Keys */
+
+ALTER TABLE parrainage
+    ADD CONSTRAINT fk_filleul_idclient
+        FOREIGN KEY (filleul) REFERENCES clients(idClient),
+    ADD CONSTRAINT fk_parrain_idclient
+        FOREIGN KEY (parrain) REFERENCES clients(idClient);
+
+
 ALTER TABLE commandes
     ADD CONSTRAINT fk_commandes_idclient
         FOREIGN KEY (idClient) REFERENCES clients(idClient),
