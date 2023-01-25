@@ -35,14 +35,11 @@ CREATE TABLE clients(
     tel char(10) NOT NULL,
     passwd char(50) NOT NULL,
     pointsFidelite int DEFAULT 0 NOT NULL CHECK ( pointsFidelite >= 0 ),
+    codeParrainage char(20) NOT NULL,
+    parrain int,
+    dateInscription timestamp WITHOUT TIME ZONE DEFAULT now(),
     adresse varchar(100) NOT NULL,
     idVille int
-);
-
-CREATE TABLE parrainage(
-    parrain int NOT NULL,
-    filleul int NOT NULL,
-    PRIMARY KEY(parrain, filleul)
 );
 
 CREATE TABLE carte_bancaire(
@@ -97,8 +94,7 @@ CREATE TABLE restaurants(
 
 
 
-
-/* Many to Many */
+/* Table associations */
 CREATE TABLE etat(
     idStatus int,
     idCommande int,
@@ -125,14 +121,11 @@ CREATE TABLE carte(
     idPlat int
 );
 
-/* Foreign Keys */
+/* Clés étrangères */
 
-ALTER TABLE parrainage
-    ADD CONSTRAINT fk_filleul_idclient
-        FOREIGN KEY (filleul) REFERENCES clients(idClient),
-    ADD CONSTRAINT fk_parrain_idclient
-        FOREIGN KEY (parrain) REFERENCES clients(idClient);
-
+ALTER TABLE clients
+    ADD CONSTRAINT fk_clients_parrain
+        FOREIGN KEY (parrain) REFERENCES clients(idClient):
 
 ALTER TABLE commandes
     ADD CONSTRAINT fk_commandes_idclient
