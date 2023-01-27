@@ -16,7 +16,7 @@ CREATE TABLE commandes(
     commentaire varchar(2000) DEFAULT NULL,
     idClient int,
     idRestaurant int,
-    idLivreur int
+    fk_commandes_idlivreur int
 );
 
 CREATE TABLE plats(
@@ -35,7 +35,7 @@ CREATE TABLE clients(
     tel char(10) NOT NULL,
     passwd char(50) NOT NULL,
     pointsFidelite int DEFAULT 0 NOT NULL CHECK ( pointsFidelite >= 0 ),
-    codeParrainage char(20) NOT NULL,
+    codeParrainage char(20) UNIQUE NOT NULL,
     parrain int,
     dateInscription timestamp WITHOUT TIME ZONE DEFAULT now(),
     adresse varchar(100) NOT NULL,
@@ -143,7 +143,7 @@ ALTER TABLE restaurants
     ADD CONSTRAINT fk_restaurants_idville
         FOREIGN KEY (idVille) REFERENCES villes(idVille);
 
-ALTER TABLE etat
+ALTER TABLE fk_etat_idstatus
     ADD CONSTRAINT fk_etat_idstatus
         FOREIGN KEY (idStatus) REFERENCES status(idStatus),
     ADD CONSTRAINT fk_etat_idcommande
